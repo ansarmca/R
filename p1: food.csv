@@ -1,21 +1,13 @@
-# Read the csv file into a data frame
-food = read.csv("C:/Users/Admin/Downloads/AKP/food.csv")
-
-# Convert FoodType to factor (important for classification)
+food <- read.csv("C:/Users/Admin/Downloads/AKP/food.csv")
 food$FoodType <- as.factor(food$FoodType)
 
-# Creates a data frame of food item tomato
 tomato <- data.frame(ingredient="tomato", Sweetness=6, Crunchiness=4)
 
-# Create training and test sets (numeric columns)
 food1 <- food[,2:3]
 tomato1 <- tomato[,2:3]
 
-# Input k (only use readline in RGui / RStudio)
-
 k <- as.numeric(readline(prompt = "Enter the value of k: "))
 
-# Run KNN
 library(class)
 pred <- knn(food1, tomato1, food$FoodType, k)
 
