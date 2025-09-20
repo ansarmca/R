@@ -1,15 +1,9 @@
 library(e1071)
-
-cars = read.csv("C:/Users/Admin/Downloads/AKP/cars.csv")
-
-cars_train = cars[,2:4]
-cars_train_labels = cars[,5]
-
-cars_test = data.frame(Colour="red", Type="SUV", Origin="domestic")
-
-classifier_cl <- naiveBayes(cars_train, cars_train_labels)
+symptoms = read.csv("D:/MES/MCA 3rd sem/DSML/R/symptoms.csv")
+symptoms_train = symptoms[,1:4]
+symptoms_test = data.frame(Chills="Y",RunningNose="N",Headache="mild",Fever="Y")
+classifier_cl <- naiveBayes(symptoms_train,symptoms$HasFlu)
 print(classifier_cl)
-
-cars_test_pred <- predict(classifier_cl, cars_test)
-cat("Prediction of Stolen Status:\n")
-print(cars_test_pred)
+symptoms_test_pred <- predict(classifier_cl, symptoms_test)
+cat("Prediction of Flu:\n")
+print(symptoms_test_pred)
